@@ -1,1 +1,18 @@
-
+-- begin DROPS_EPIC
+alter table DROPS_EPIC add constraint FK_DROPS_EPIC_ON_INITIATIVE foreign key (INITIATIVE_ID) references DROPS_INITIATIVE(ID) on delete CASCADE^
+create index IDX_DROPS_EPIC_ON_INITIATIVE on DROPS_EPIC (INITIATIVE_ID)^
+-- end DROPS_EPIC
+-- begin DROPS_TASK
+alter table DROPS_TASK add constraint FK_DROPS_TASK_ON_EPIC foreign key (EPIC_ID) references DROPS_EPIC(ID) on delete CASCADE^
+alter table DROPS_TASK add constraint FK_DROPS_TASK_ON_PARENT foreign key (PARENT_ID) references DROPS_TASK(ID) on delete CASCADE^
+create index IDX_DROPS_TASK_ON_EPIC on DROPS_TASK (EPIC_ID)^
+create index IDX_DROPS_TASK_ON_PARENT on DROPS_TASK (PARENT_ID)^
+-- end DROPS_TASK
+-- begin DROPS_INITIATIVE
+alter table DROPS_INITIATIVE add constraint FK_DROPS_INITIATIVE_ON_PROJECT foreign key (PROJECT_ID) references DROPS_PROJECT(ID) on delete CASCADE^
+create index IDX_DROPS_INITIATIVE_ON_PROJECT on DROPS_INITIATIVE (PROJECT_ID)^
+-- end DROPS_INITIATIVE
+-- begin DROPS_PROJECT
+alter table DROPS_PROJECT add constraint FK_DROPS_PROJECT_ON_PORTFOLIO foreign key (PORTFOLIO_ID) references DROPS_PORTFOLIO(ID) on delete CASCADE^
+create index IDX_DROPS_PROJECT_ON_PORTFOLIO on DROPS_PROJECT (PORTFOLIO_ID)^
+-- end DROPS_PROJECT

@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
+    <view entity="drops_Project" name="projects" extends="_local">
+        <property name="portfolio" view="_minimal">
+            <property name="key"/>
+        </property>
+    </view>
+    <view entity="drops_Initiative" name="initiatives" extends="_local">
+        <property name="project" view="projects">
+        </property>
+    </view>
+    <view entity="drops_Epic" name="epics" extends="_local">
+        <property name="initiative" view="initiatives"/>
+    </view>
+    <view entity="drops_Task" name="tasks" extends="_local">
+        <property name="epic" view="epics"/>
+        <property name="parent" view="_minimal">
+            <property name="key"/>
+            <property name="epic" view="epics"/>
+            <property name="parent" view="_minimal"/>
+        </property>
+    </view>
 </views>

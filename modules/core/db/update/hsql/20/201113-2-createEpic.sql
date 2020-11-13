@@ -1,0 +1,2 @@
+alter table DROPS_EPIC add constraint FK_DROPS_EPIC_ON_INITIATIVE foreign key (INITIATIVE_ID) references DROPS_INITIATIVE(ID) on delete CASCADE;
+create index IDX_DROPS_EPIC_ON_INITIATIVE on DROPS_EPIC (INITIATIVE_ID);
